@@ -1,0 +1,33 @@
+==============================================================================
+UJI AR(1) via estimator berbasis selisih kedua (Rice/Gasser)
+==============================================================================
+r1 selisih-kedua TERAMATI      : -0.1233
+rentang teoretis AR(1), rho in [0, 0.95]: [-0.6667, -0.5006]
+Tidak ada akar valid di (0, 0.95) -> TERAMATI DI LUAR RENTANG
+=> model AR(1) DITOLAK oleh data. Kemungkinan: MA negatif,
+   musiman sisa, atau heteroskedastisitas.
+
+==============================================================================
+BANDWIDTH TERPILIH — data IHK riil (log_IHK, Local Linear)
+==============================================================================
+
+    kriteria   h* (bulan)
+          CV            6
+         GCV            6
+      MCV_l0            6
+      MCV_l2            9
+      MCV_l4           10
+      MCV_l8           21
+
+[tersimpan] /content/drive/MyDrive/SKRIPSI_LPR/output/bandwidth_real.csv
+
+==============================================================================
+RINGKASAN UNTUK RINGKASAN_HASIL.md
+==============================================================================
+r1_obs = -0.1233 | rentang AR(1) = [-0.6667, -0.5006] | AR(1) valid? False
+h*_CV = 6 bulan
+h*_GCV = 6 bulan
+h*_MCV_l0 = 6 bulan
+h*_MCV_l2 = 9 bulan
+h*_MCV_l4 = 10 bulan
+h*_MCV_l8 = 21 bulan

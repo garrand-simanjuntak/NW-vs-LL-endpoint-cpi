@@ -1,0 +1,88 @@
+(1) ADF (H0: akar unit) dan KPSS (H0: stasioner); reg c = konstanta, ct = + tren linear, ctt = + tren kuadratik
+   series variant test reg     stat      p  lags  nobs     cv5    p_note
+  log CPI     raw  ADF  ct  -1.2956 0.8890    12   185 -3.4345          
+  log CPI     raw  ADF ctt  -1.8193 0.8773    12   185 -3.8647          
+  log CPI     raw KPSS  ct   0.4802 0.0100     9   198  0.1460 p <= 0.01
+inflation     raw  ADF   c  -3.0258 0.0326    11   186 -2.8772          
+inflation     raw  ADF  ct  -3.5467 0.0347    11   186 -3.4344          
+inflation     raw KPSS   c   0.7503 0.0100    10   198  0.4630 p <= 0.01
+inflation     raw KPSS  ct   0.0868 0.1000    17   198  0.1460 p >= 0.10
+  log CPI      S2  ADF  ct  -1.7207 0.7417     2   195 -3.4332          
+  log CPI      S2  ADF ctt  -1.3895 0.9598     2   195 -3.8630          
+  log CPI      S2 KPSS  ct   0.4814 0.0100     9   198  0.1460 p <= 0.01
+inflation      S2  ADF   c  -4.9514 0.0000     4   193 -2.8766          
+inflation      S2  ADF  ct -11.1776 0.0000     1   196 -3.4331          
+inflation      S2 KPSS   c   1.0628 0.0100     1   198  0.4630 p <= 0.01
+inflation      S2 KPSS  ct   0.0883 0.1000     7   198  0.1460 p >= 0.10
+
+(2) r1 selisih pertama (D1) dan kedua (D2), CI 95% bootstrap blok (l = 12, B = 2000); batas rho = 0.7 pada r1(D2) = -0.5196
+   series variant   r1_D1  r1_D1_lo  r1_D1_hi   r1_D2  r1_D2_lo  r1_D2_hi  rho_hat_D1  rho_hat_D2                        class_point                           class_CI     SNR  SNR0_at_rho_hat_D2
+  log CPI     raw  0.3087    0.1201    0.3815 -0.1233   -0.2646    0.0167         NaN         NaN terintegrasi/persisten: Pers. (26)                 CI melintasi batas 33.6281                 NaN
+  log CPI      S1  0.3174    0.1424    0.3859 -0.1663   -0.3023   -0.0306         NaN         NaN terintegrasi/persisten: Pers. (26) terintegrasi/persisten: Pers. (26) 35.6955                 NaN
+  log CPI      S2  0.2832    0.0815    0.3559 -0.2225   -0.3725   -0.0802         NaN         NaN terintegrasi/persisten: Pers. (26) terintegrasi/persisten: Pers. (26) 29.9569                 NaN
+inflation     raw -0.1212   -0.2624    0.0177 -0.3816   -0.4826   -0.2235      0.7575         NaN terintegrasi/persisten: Pers. (26) terintegrasi/persisten: Pers. (26)  0.2939                 NaN
+inflation      S1 -0.1628   -0.3013   -0.0343 -0.4244   -0.5221   -0.2675      0.6745         NaN terintegrasi/persisten: Pers. (26)                 CI melintasi batas  0.3307                 NaN
+inflation      S2 -0.2190   -0.3609   -0.0761 -0.4541   -0.5409   -0.2854      0.5621         NaN terintegrasi/persisten: Pers. (26)                 CI melintasi batas  0.3646                 NaN
+Noise floor SNR0 (LL, jendela 12 titik) untuk AR(1): rho=0.0: 0.240, rho=0.3: 0.334, rho=0.55: 0.475, rho=0.6: 0.519, rho=0.67: 0.600, rho=0.75: 0.736
+ACF residual LL (h = 12) inflasi raw, lag 1-13: +0.23 -0.35 -0.35 -0.15 +0.12 +0.24 +0.06 -0.20 -0.34 -0.21 +0.19 +0.37 +0.10
+ACF residual LL (h = 12) inflasi S2, lag 1-13: +0.16 -0.31 -0.22 -0.10 +0.07 +0.11 -0.00 -0.14 -0.19 -0.06 -0.04 -0.00 +0.12
+
+(2b) Dependensi galat inflasi dari variogram (tanpa pilot) dan noise floor padanannya
+  raw: rho_k (k=1..13) = +0.28 -0.25 -0.25 -0.08 +0.16 +0.27 +0.11 -0.13 -0.28 -0.17 +0.18 +0.34 +0.09
+  S1: rho_k (k=1..13) = +0.28 -0.20 -0.20 -0.06 +0.13 +0.19 +0.06 -0.14 -0.23 -0.10 +0.13 +0.18 +0.05
+  S2: rho_k (k=1..13) = +0.24 -0.18 -0.11 -0.01 +0.12 +0.16 +0.07 -0.07 -0.13 -0.03 -0.03 -0.02 +0.10
+variant  rho1   rho2   rho3  rho6  rho12  min_eig   SNR  SNR0_matched
+    raw 0.285 -0.253 -0.246 0.269  0.337    0.238 0.294         0.235
+     S1 0.282 -0.203 -0.200 0.190  0.179    0.274 0.331         0.239
+     S2 0.243 -0.183 -0.107 0.157 -0.016    0.290 0.365         0.262
+
+(3) Residual r_t dari fit LL h = 12 per rezim cakupan; uji Brown-Forsythe (Levene, median)
+variant             regime  n  mean_r   sd_r  sd_resid  sd_resid_no_outlier
+    raw  2010-13 (66 kota) 48  0.4675 0.6059    0.5968               0.4221
+    raw  2014-19 (82 kota) 72  0.3296 0.4321    0.4212               0.3526
+    raw  2020-23 (90 kota) 48  0.2404 0.2813    0.2563               0.2563
+    raw 2024-26 (150 kota) 30  0.2090 0.4615    0.4555               0.3661
+     S2  2010-13 (66 kota) 48  0.3964 0.4677    0.4512               0.3030
+     S2  2014-19 (82 kota) 72  0.2585 0.3444    0.3220               0.2635
+     S2  2020-23 (90 kota) 48  0.1693 0.2808    0.2559               0.2559
+     S2 2024-26 (150 kota) 30  0.1364 0.4616    0.4522               0.4002
+  p-value raw: BF_all4 = 0.004, BF_all4_no_outlier = 0.002, BF_2010-13_vs_2014-19 = 0.034, BF_2014-19_vs_2020-23 = 0.047, BF_2020-23_vs_2024-26 = 0.054
+  p-value S2: BF_all4 = 0.070, BF_all4_no_outlier = 0.125, BF_2010-13_vs_2014-19 = 0.057, BF_2014-19_vs_2020-23 = 0.597, BF_2020-23_vs_2024-26 = 0.073
+
+(4a) Reproduksi Test (A) (NW: revisi vs slope LL, benchmark delta_h; LL: revisi vs kelengkungan LQ, benchmark gamma_h)
+   series  h est  n_t0   slope  benchmark  ratio   corr
+  log CPI  9  NW   142  3.2088     3.0857 1.0399 0.9840
+  log CPI  9  LL   142 12.4635    11.4214 1.0912 0.8250
+  log CPI 12  NW   139  4.3007     4.2128 1.0209 0.9847
+  log CPI 12  LL   139 24.7831    20.9293 1.1841 0.8388
+  log CPI 18  NW   133  6.5755     6.4648 1.0171 0.9899
+  log CPI 18  LL   133 52.9365    48.4721 1.0921 0.8191
+  log CPI 24  NW   127  8.8969     8.7158 1.0208 0.9924
+  log CPI 24  LL   127 92.1074    87.3837 1.0541 0.8447
+inflation  9  NW   142  3.5936     3.0857 1.1646 0.8240
+inflation  9  LL   142 10.9083    11.4214 0.9551 0.5423
+inflation 12  NW   139  4.8557     4.2128 1.1526 0.7891
+inflation 12  LL   139 27.0973    20.9293 1.2947 0.6518
+inflation 18  NW   133  6.9608     6.4648 1.0767 0.8059
+inflation 18  LL   133 65.0472    48.4721 1.3420 0.6301
+inflation 24  NW   127  9.6648     8.7158 1.1089 0.8521
+inflation 24  LL   127 89.8248    87.3837 1.0279 0.5820
+
+(4b) Residual Test (A) di sekitar bulan penautan (|t0 - L| <= h - 1, L = Jan 2014/2020/2024): rasio rata-rata kuadrat dekat/jauh, p-value pergeseran sirkular
+   series  h est  n_t0  n_near  ms_ratio_near_far  p_circular_shift
+  log CPI  9  NW   142      44              0.712             0.627
+  log CPI  9  LL   142      44              0.839             0.549
+  log CPI 12  NW   139      59              1.872             0.209
+  log CPI 12  LL   139      59              2.238             0.101
+  log CPI 18  NW   133      83              0.962             0.451
+  log CPI 18  LL   133      83              1.270             0.293
+  log CPI 24  NW   127     101              1.477             0.409
+  log CPI 24  LL   127     101              2.322             0.236
+inflation  9  NW   142      44              0.392             0.782
+inflation  9  LL   142      44              0.463             0.754
+inflation 12  NW   139      59              1.182             0.446
+inflation 12  LL   139      59              1.419             0.324
+inflation 18  NW   133      83              1.717             0.316
+inflation 18  LL   133      83              1.349             0.376
+inflation 24  NW   127     101              1.478             0.409
+inflation 24  LL   127     101              1.933             0.346

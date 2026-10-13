@@ -1,0 +1,23 @@
+Ambang kritis (Bonferroni, alpha=0.05, 198 titik): z = 3.660
+
+==============================================================================
+VALIDASI MONTE CARLO (R=2000, h=0.1, sigma=0.3)
+Uji: apakah bias empirik konsisten dengan bias eksak dalam galat MC?
+==============================================================================
+  M1_sin   NW: max|z| =  3.93 | pelanggaran = 14/198
+  M1_sin   LL: max|z| =  3.93 | pelanggaran = 14/198
+  M2_exp   NW: max|z| =  1.95 | pelanggaran = 0/198
+  M2_exp   LL: max|z| =  1.95 | pelanggaran = 0/198
+  M3_quad  NW: max|z| =  1.74 | pelanggaran = 0/198
+  M3_quad  LL: max|z| =  1.74 | pelanggaran = 0/198
+
+[tersimpan] /content/drive/MyDrive/SKRIPSI_LPR/output/sim_bias_curves.png
+
+==============================================================================
+LAJU KONVERGENSI BIAS DI TITIK BATAS x=1
+Teori: NW = O(h)  [orde 1]   |   LL = O(h^2)  [orde 2]
+==============================================================================
+ target  orde_NW_empirik  orde_LL_empirik  m'(1)
+ M1_sin            1.008            3.163  6.283
+ M2_exp            1.006            2.130 14.778
+M3_quad            2.054            2.193 -0.000

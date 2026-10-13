@@ -1,0 +1,9 @@
+DG-5: estimasi real-time, h = 12 bulan, Epanechnikov, jendela satu sisi 12 titik
+  p  w_0(terkini)  faktor_varians_vs_rata2_trailing  lag_rata2  bobot_min
+  0        0.1178                            1.1498     4.2128     0.0188
+  1        0.3460                            3.7897     0.0000    -0.0619
+  2        0.5934                            6.7928     0.0000    -0.0956
+  3        0.7895                            9.2510    -0.0000    -0.1105
+
+  rasio varians kubik/LL = 2.441; LL/NW = 3.296
+  cek: faktor NW dan LL harus sama dengan 24_worked_example.log (1.15 dan 3.79)

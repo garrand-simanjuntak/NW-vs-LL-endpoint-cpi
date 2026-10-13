@@ -1,0 +1,16 @@
+====================================================================================
+VALIDASI MC -- apakah |bias_MC - bias_eksak| meluruh dengan laju O(R^-1/2)?
+Statistik: RMS deviasi sepanjang x, dirata-ratakan atas S=30 seed independen
+====================================================================================
+   R  RMSdev_NW  RMSdev_LL  RMSdev_NW*sqrt(R)  RMSdev_LL*sqrt(R)
+ 125   0.004671   0.004953           0.052223           0.055378
+ 250   0.003407   0.003637           0.053867           0.057505
+ 500   0.002202   0.002359           0.049243           0.052759
+1000   0.001701   0.001911           0.053790           0.060445
+2000   0.001202   0.001303           0.053755           0.058293
+4000   0.000793   0.000860           0.050178           0.054380
+
+Orde konvergensi empirik  NW: -0.5048   LL: -0.4965   (teori: -0.5000)
+Kolom dev*sqrt(R) stabil? koef. variasi NW=0.0389, LL=0.0498 (harus ~0)
+
+=> FORMULA BIAS EKSAK TERVALIDASI

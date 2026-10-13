@@ -1,0 +1,14 @@
+==========================================================================
+ORDE BIAS EMPIRIK: interior vs batas, per derajat p  (M2_exp, Epanechnikov)
+==========================================================================
+lokasi          batas  interior  turun_di_batas
+p ganjil/genap                                 
+0 genap          0.99      2.01            1.02
+1 ganjil         2.08      2.01           -0.07
+2 genap          3.25      4.02            0.78
+3 ganjil         4.51      4.02           -0.48
+
+Interpretasi: 'turun_di_batas' ~ 1 untuk p GENAP (kehilangan subsidi simetri),
+~ 0 untuk p GANJIL (koreksi via konstruksi, bukan simetri).
+
+[tersimpan] /content/drive/MyDrive/SKRIPSI_LPR/output/odd_even_degree.csv

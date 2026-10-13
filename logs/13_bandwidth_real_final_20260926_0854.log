@@ -1,0 +1,23 @@
+==============================================================================
+UJI AR(1) via estimator berbasis selisih kedua (Rice/Gasser)
+==============================================================================
+r1 selisih-kedua TERAMATI      : -0.1233
+rentang teoretis AR(1), rho in [0, 0.95]: [-0.6667, -0.5006]
+Tidak ada akar valid di (0, 0.95) -> TERAMATI DI LUAR RENTANG
+=> model AR(1) DITOLAK oleh data. Kemungkinan: MA negatif,
+   musiman sisa, atau heteroskedastisitas.
+
+==============================================================================
+BANDWIDTH TERPILIH — data IHK riil (log_IHK, Local Linear)
+==============================================================================
+
+    kriteria   h* (bulan)
+Traceback (most recent call last):
+  File "/content/drive/MyDrive/SKRIPSI_LPR/13_bandwidth_real.py", line 130, in <module>
+    if res[c].notna().sum() == 0:
+       ~~~^^^
+  File "/usr/local/lib/python3.13/dist-packages/pandas/core/frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/usr/local/lib/python3.13/dist-packages/pandas/core/indexes/range.py", line 417, in get_loc
+    raise KeyError(key)
+KeyError: 'CV'

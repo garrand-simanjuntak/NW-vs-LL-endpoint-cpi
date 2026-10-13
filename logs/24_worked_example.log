@@ -1,0 +1,76 @@
+(i) TEST (A) PADA h = 12: rasio slope, CI HAC, benchmark disesuaikan noise (Pers. 25a)
+  log CPI   NW: rasio 1.021 [0.978, 1.064], benchmark 1.051, porsi noise regresor 0.75, valid = True
+  log CPI   LL: rasio 1.184 [1.057, 1.311], benchmark 1.126, porsi noise regresor 1.00, valid = True
+  inflation NW: rasio 1.153 [1.038, 1.267], benchmark 1.178, porsi noise regresor 1.00, valid = True
+  inflation LL: rasio 1.295 [1.064, 1.526], benchmark 1.209, porsi noise regresor 1.00, valid = True
+
+(ii) LAG JENDELA TETAP h = 12: delta_h = 4.2128 bulan (NW satu sisi), rata-rata trailing 12 bulan = 5.5 bulan
+  faktor varians (galat i.i.d.) sum w^2: NW 0.0958, rata-rata trailing 0.0833, LL 0.3158; NW/trailing = 1.150, LL/trailing = 3.790; lag rata-rata bobot LL -0.0000 bulan
+  log CPI: revisi NW rata-rata 0.01159 poin log (median 0.01094), positif pada 1.00 dari t0; slope lokal rata-rata 0.00277 per bulan, delta_h x slope = 0.01168
+
+(iii) STRUKTUR GALAT. ADF dan KPSS dengan konstanta dan tren linear, 5%; KPSS p dipotong ke [0.01, 0.10]
+  log CPI   raw: ADF p = 0.889, KPSS p = 0.01 -> integrated | ADF dengan tren kuadratik p = 0.877
+  log CPI   S2 : ADF p = 0.742, KPSS p = 0.01 -> integrated | ADF dengan tren kuadratik p = 0.960
+  inflation raw: ADF p = 0.035, KPSS p = 0.10 -> stationary | dengan konstanta saja: ADF p = 0.033, KPSS p = 0.01 -> persistent (conflicting)
+  inflation S2 : ADF p = 0.000, KPSS p = 0.10 -> stationary | dengan konstanta saja: ADF p = 0.000, KPSS p = 0.01 -> persistent (conflicting)
+  Kecukupan AR(1) untuk deret stasioner, rho_D1 dari Pers. (20a). (a) r(rho_D1) di dalam CI bootstrap r1(Delta^2 y) (K5); (b) korelasi lag 1 variogram di dalam pita 95% di bawah AR(1)(rho_D1); (c) SNR tidak di bawah noise AR(1)(rho_D1) murni. (b) dan (c) dari 2000 deret noise AR(1) murni, n = 198
+  inflasi raw: rho_D1 = 0.758, l*(rho_D1) = 9
+      (a) r(rho) = -0.5131; r1(D2) = -0.3816 [-0.4826, -0.2235] -> gagal
+      (b) variogram rho1 = 0.285; pita 95% di bawah AR(1)(0.758) = [0.621, 0.849], median 0.750, P(sim <= data) = 0.0000 -> gagal; variogram rho2 = -0.253 (AR(1): rho1^2 = 0.081), (rho1 - rho2)/(1 - rho1) = 0.751
+      (c) SNR = 0.294; SNR0(rho) = 0.753; noise murni: persentil 5% 0.505, minimum 0.335; p = 0.0000 -> gagal
+      AR(1) memadai: False
+  inflasi S2 : rho_D1 = 0.562, l*(rho_D1) = 4
+      (a) r(rho) = -0.5393; r1(D2) = -0.4541 [-0.5409, -0.2854] -> lolos
+      (b) variogram rho1 = 0.243; pita 95% di bawah AR(1)(0.562) = [0.418, 0.677], median 0.555, P(sim <= data) = 0.0000 -> gagal; variogram rho2 = -0.183 (AR(1): rho1^2 = 0.059), (rho1 - rho2)/(1 - rho1) = 0.563
+      (c) SNR = 0.365; SNR0(rho) = 0.485; noise murni: persentil 5% 0.328, minimum 0.151; p = 0.1090 -> lolos
+      AR(1) memadai: False
+
+  Lambda umum. Cek lag 12 dulu (variogram, lag 12 dan 24):
+    raw: rho12 = +0.337, rho24 = +0.265, rho6 = +0.269
+    S2 : rho12 = -0.016, rho24 = -0.100, rho6 = +0.157
+    S2, h = 24 bulan: lambda(l), l = 0..12: +0.55 -0.36 +0.31 +0.72 +0.78 +0.39 -0.12 -0.34 -0.16 +0.22 +0.32 +0.44 +0.51 | pertama |lambda| <= 0.2 (l >= 1): 6; stabil sampai lag 24: 17
+    S2, h = 36 bulan: lambda(l), l = 0..12: +0.65 -0.22 +0.43 +0.81 +0.87 +0.49 +0.01 -0.20 -0.01 +0.35 +0.44 +0.55 +0.60 | pertama |lambda| <= 0.2 (l >= 1): 6; stabil sampai lag 24: 17
+    S2, h = 48 bulan: lambda(l), l = 0..12: +0.68 -0.18 +0.46 +0.83 +0.88 +0.51 +0.05 -0.15 +0.03 +0.37 +0.46 +0.55 +0.60 | pertama |lambda| <= 0.2 (l >= 1): 1; stabil sampai lag 24: 17
+    S2, h = 60 bulan: lambda(l), l = 0..12: +0.70 -0.15 +0.47 +0.83 +0.88 +0.52 +0.06 -0.13 +0.05 +0.38 +0.46 +0.54 +0.59 | pertama |lambda| <= 0.2 (l >= 1): 1; stabil sampai lag 24: 17
+    presisi (Sigma S2, 300 deret, h = 36): IQR lambda_topi untuk l = 0..8 = 1.06-2.12; l stabil terpilih median 17 (kuartil 16-19)
+    presisi (Sigma S2, 300 deret, h = 60): IQR lambda_topi untuk l = 0..8 = 1.00-2.15; l stabil terpilih median 17 (kuartil 16-19)
+    Sigma topi tidak semidefinit positif pada 0.08 replikasi
+  Kriteria MCV pada inflasi (LL, h = 6..120 bulan): h terpilih, rentang h dengan skor <= 1.01 x minimum
+variant  ell  naive_AR1_rule  h_hat  s_hat  flat1_lo  flat1_hi  at_edge
+    raw    0           False    101  0.005        31       120    False
+    raw    1           False    120  0.013        64       120     True
+    raw    2           False    120  0.021        58       120     True
+    raw    4           False     27  0.167        24       116    False
+    raw    5           False     26  0.212        23       111    False
+    raw    9            True     83  0.114        67       120    False
+    raw   17           False    120  0.146        82       120     True
+     S2    0           False     27  0.019        19       120    False
+     S2    1           False    120  0.013        59       120     True
+     S2    2           False    105  0.024        48       120    False
+     S2    4            True     28  0.161        24       107    False
+     S2    5           False     29  0.190        24       120    False
+     S2    9           False    101  0.094        73       120    False
+     S2   17           False    120  0.146        98       120     True
+  Pers. (26), bandwidth masing-masing (K3, h_ref = 12, 18, 24):
+    log CPI   S0: h_NW 2-3, h_LL 3-21, rasio in-sample 0.758-0.946, OOS 0.589-0.919
+    inflation S0: h_NW 18-25, h_LL 45-48, rasio in-sample 0.487-0.595, OOS 0.365-0.539
+    log CPI   S2: h_NW 2-3, h_LL 3-7, rasio in-sample 0.794-0.877, OOS 0.555-1.031
+    inflation S2: h_NW 17-24, h_LL 33-48, rasio in-sample 0.500-0.625, OOS 0.393-0.547
+
+(iv) SNR / SNR0. Pita crossover dalam kelipatan floor: tanpa batas 1.07-1.66, h <= 0.5 1.27-1.73; floor i.i.d. 0.240
+  inflasi raw: SNR = 0.294; /floor i.i.d. = 1.23, /floor padanan (0.235) = 1.25; tanpa batas: inside, h <= 0.5: below
+  inflasi S2 : SNR = 0.365; /floor i.i.d. = 1.52, /floor padanan (0.262) = 1.39; tanpa batas: inside, h <= 0.5: inside
+
+(v) DG-4 pada S2, tahunan = 12 x tren bulanan (poin persen). Cek: |12 x rata-rata trailing (mentah) - yoy| maks 0.29, rata-rata 0.07; |S2 - mentah| maks 0.44, rata-rata 0.03
+episode  months  final_mean  final_change  NW12_mean_gap  NW12_max_abs_gap NW12_max_abs_month  NW12_rms_gap  LL12_mean_gap  LL12_max_abs_gap LL12_max_abs_month  LL12_rms_gap  TM12_mean_gap  TM12_max_abs_gap TM12_max_abs_month  TM12_rms_gap
+2013-14      24       +6.58         -0.59          +0.01             +3.15            2013-08         +1.67          +0.57            +10.49            2014-12         +4.26          -0.06             -2.23            2013-01         +1.50
+   2020      12       +1.62         -0.48          +0.11             +0.91            2020-03         +0.46          -0.38             -2.09            2020-07         +1.06          +0.33             +1.36            2020-03         +0.63
+   2022      12       +4.33         -0.09          +0.30             +2.00            2022-09         +1.23          +1.66             +4.07            2022-09         +2.22          -0.19             -2.14            2022-02         +1.33
+    all     139       +3.33         -3.82          +0.08             -3.29            2025-02         +0.94          -0.13            +10.49            2014-12         +2.11          +0.16             -2.61            2025-02         +0.98
+  2013-14: final tahunan 5.92 sampai 7.16; yoy publikasi 3.85 sampai 8.79
+  2020: final tahunan 1.45 sampai 1.96; yoy publikasi 1.18 sampai 3.15
+  2022: final tahunan 3.91 sampai 4.64; yoy publikasi 2.06 sampai 5.97
+
+(vi) [tersimpan] /home/claude/skripsi_lpr/output/fig5_flowchart.png dan sumbernya fig5_flowchart.dot
+
+selesai dalam 9 s; [tersimpan] output/k6_*.csv

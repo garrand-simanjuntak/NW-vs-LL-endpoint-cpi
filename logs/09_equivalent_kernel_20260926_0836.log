@@ -1,0 +1,10 @@
+KONDISI MOMEN DISKRET  —  sum w=1 (reproduksi konstanta), sum w(X-x)=0 (reproduksi linear)
+                   titik  est      sum w    sum w(X-x)
+       Interior (x=0.50)   NW   1.000000     6.939e-18
+       Interior (x=0.50)   LL   1.000000    -6.939e-18
+          Batas (x=0.95)   NW   1.000000    -1.147e-02
+          Batas (x=0.95)   LL   1.000000     6.939e-18
+  Batas ekstrem (x=1.00)   NW   1.000000    -3.610e-02
+  Batas ekstrem (x=1.00)   LL   1.000000    -3.101e-17
+
+[tersimpan] /content/drive/MyDrive/SKRIPSI_LPR/output/equivalent_kernel.png

@@ -1,0 +1,48 @@
+pra-hitung hat matrix ...
+pra-hitung bobot MCV (blok dibuang) ...
+
+KELAYAKAN: h terkecil yang terdefinisi per panjang blok
+  ell= 0 -> h_min = 0.03  (29/29 titik grid)
+  ell= 2 -> h_min = 0.03  (29/29 titik grid)
+  ell= 5 -> h_min = 0.05  (27/29 titik grid)
+  ell= 8 -> h_min = 0.06  (26/29 titik grid)
+  ell=16 -> h_min = 0.10  (22/29 titik grid)
+  ell=22 -> h_min = 0.13  (19/29 titik grid)
+kalibrasi rho = 0.0 ...
+kalibrasi rho = 0.3 ...
+kalibrasi rho = 0.6 ...
+kalibrasi rho = 0.9 ...
+
+==============================================================================================================
+KALIBRASI PADA DATA SIMULASI (m diketahui), M2_exp, n=198, R=200 replikasi
+Median h terpilih. rasio < 1 => UNDERSMOOTHING (h terlalu kecil)
+==============================================================================================================
+  rho  h_ORACLE  h_CV  h_GCV  h_MCV_l0  h_MCV_l2  h_MCV_l5  h_MCV_l8  h_MCV_l16  h_MCV_l22
+0.000     0.130 0.130  0.130     0.130     0.130     0.160     0.170      0.230      0.260
+0.300     0.150 0.040  0.030     0.040     0.150     0.160     0.190      0.250      0.290
+0.600     0.180 0.030  0.030     0.030     0.100     0.180     0.210      0.270      0.310
+0.900     0.230 0.030  0.030     0.030     0.030     0.070     0.140      0.250      0.300
+
+  rho  rasio_CV  rasio_GCV  rasio_MCV_l0  rasio_MCV_l2  rasio_MCV_l5  rasio_MCV_l8  rasio_MCV_l16  rasio_MCV_l22
+0.000     1.000      1.000         1.000         1.000         1.231         1.308          1.769          2.000
+0.300     0.267      0.200         0.267         1.000         1.067         1.267          1.667          1.933
+0.600     0.167      0.167         0.167         0.556         1.000         1.167          1.500          1.722
+0.900     0.130      0.130         0.130         0.130         0.304         0.609          1.087          1.304
+
+==============================================================================================================
+UJI LANGSUNG ATURAN  l* = ln(0,1)/ln(rho)
+==============================================================================================================
+   rho   l* aturan   l terdekat di grid   rasio oracle  status
+   0.3        1.91                    2          1.000  BENAR
+   0.6        4.51                    5          1.000  BENAR
+   0.9       21.85                   22          1.304  GAGAL
+
+ONGKOS SAAT rho = 0 (error tak berkorelasi):
+  ell= 2: rasio 1.000  -> oversmooth 0%
+  ell= 5: rasio 1.231  -> oversmooth 23%
+  ell= 8: rasio 1.308  -> oversmooth 31%
+  ell=16: rasio 1.769  -> oversmooth 77%
+  ell=22: rasio 2.000  -> oversmooth 100%
+
+[tersimpan] /content/drive/MyDrive/SKRIPSI_LPR/output/bandwidth_selection.png
+[tersimpan] /content/drive/MyDrive/SKRIPSI_LPR/output/bandwidth_calibration.csv
