@@ -1,0 +1,12 @@
+# Pipeline data: 01_merge_raw.py, 02_derive_national_series.py
+pandas>=2.0
+numpy>=1.24
+openpyxl>=3.1
+matplotlib>=3.7
+
+# Dipakai untuk tahap analisis berikutnya (estimasi NW/LPR, bandwidth selection)
+scipy>=1.10
+scikit-learn>=1.3
+
+# Revisi putaran 2: uji ADF/KPSS di 23_data_checks.py
+statsmodels>=0.14
