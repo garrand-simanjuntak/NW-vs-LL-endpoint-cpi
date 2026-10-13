@@ -1,0 +1,36 @@
+digraph G {
+  graph [rankdir=TB, nodesep=0.22, ranksep=0.22, fontname="DejaVu Sans", pad=0.1];
+  node  [fontname="DejaVu Sans", fontsize=9, shape=box, style="rounded", margin="0.08,0.04", height=0.3];
+  edge  [fontname="DejaVu Sans", fontsize=8, arrowsize=0.6];
+  start [label="Monthly series; trend wanted at the latest month", style="rounded,filled", fillcolor="#eeeeee"];
+  s1  [label="(i) Regress NW revisions on the local slope\nand LL revisions on the local curvature"];
+  d1  [shape=diamond, label="Ratios match\nEq. (25a)?"];
+  x1  [label="Inspect curvature,\nbreaks, outliers", style="rounded,dashed"];
+  s2  [label="(ii) NW lags by δₕ times the current slope\n(h = 12: 4.2 months; 12-month mean: 5.5)"];
+  s3  [label="(iii) ADF and KPSS with constant and linear trend, 5%"];
+  d3  [shape=diamond, label="Stationary?"];
+  d4  [shape=diamond, label="AR(1)\nadequate?"];
+  d5  [shape=diamond, label="ρ̂ ≤ 0.7?"];
+  mcv [label="MCV with ℓ*(ρ̂),\nEq. (20); report ŝ = (2ℓ̂ + 1)/(2nĥ)"];
+  e26 [label="Own bandwidths by Eq. (26);\nreference window 12 (18, 24)"];
+  s4  [label="(iv) Stationary errors: SNR / SNR₀"];
+  b1  [label="below 1.1:\nNW favoured"];
+  b2  [label="1.1 to 1.7:\nNW not dominated"];
+  b3  [label="above 1.7: LL favoured unless\nthe endpoint slope is weak"];
+  start -> s1 -> d1;
+  d1 -> x1 [label=" no"];
+  d1 -> s2 [label=" yes"];
+  s2 -> s3 -> d3;
+  d3 -> d4 [label=" yes"];
+  d3 -> e26 [label=" no: integrated\n or conflicting"];
+  d4 -> d5 [label=" yes"];
+  d4 -> e26 [label=" no"];
+  d5 -> mcv [label=" yes"];
+  d5 -> e26 [label=" no"];
+  mcv -> s4;
+  e26 -> s4 [style=dashed, label=" if stationary"];
+  s4 -> b1; s4 -> b2; s4 -> b3;
+  {rank=same; d1; x1}
+  {rank=same; mcv; e26}
+  {rank=same; b1; b2; b3}
+}

@@ -1,0 +1,4 @@
+Target function	m′(1)	m″(1)	Role
+m(x) = sin(2πx)	2π	0	Large slope at both boundaries; m″(1) = 0, so the leading LL boundary term vanishes and the LL bias falls to O(h³)
+m(x) = e^(2x)	2e²	4e²	Principal function; monotone increasing, resembling the CPI trend
+m(x) = −2(x − 1)²	0	−4	Negative control (falsification test)

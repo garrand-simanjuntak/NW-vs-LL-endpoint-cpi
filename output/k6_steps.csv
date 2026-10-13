@@ -1,0 +1,27 @@
+step,series,item,value,lo,hi,ref,verdict
+i,log CPI,Test A NW ratio,1.0208832874072091,0.977884336648946,1.0638822381654722,1.0511779652279003,valid
+i,log CPI,Test A LL ratio,1.1841338737957512,1.0571262716796723,1.31114147591183,1.1260253693913067,valid
+i,inflation,Test A NW ratio,1.1526255558248866,1.0378726797197464,1.2673784319300263,1.178067904625258,valid
+i,inflation,Test A LL ratio,1.294710107360566,1.0636871997053252,1.5257330150158066,1.208563055665454,valid
+ii,both,variance factor NW/trailing,1.1497719121078107,,,,
+ii,both,variance factor LL/trailing,3.7896662584642136,,,,
+ii,both,delta_h (months),4.212765957446809,,,,
+ii,both,trailing-mean lag (months),5.5,,,,
+ii,log CPI,mean NW revision (log points),0.011593999289096579,,,,
+ii,log CPI,share of t0 with positive revision,1.0,,,,
+iii,log CPI,raw ADF p (ct),0.8890195438480426,,,,
+iii,log CPI,raw KPSS p (ct),0.01,,,,integrated
+iii,log CPI,S2 ADF p (ct),0.7416627431688106,,,,
+iii,log CPI,S2 KPSS p (ct),0.01,,,,integrated
+iii,inflation,raw ADF p (ct),0.0346569897217507,,,,
+iii,inflation,raw KPSS p (ct),0.1,,,,stationary
+iii,inflation,S2 ADF p (ct),1.0330601455708e-17,,,,
+iii,inflation,S2 KPSS p (ct),0.1,,,,stationary
+iv,inflation,raw SNR,0.2939183558989712,,,,
+iv,inflation,raw SNR/SNR0 iid,1.2268935457488075,,,,"uncapped inside, capped below"
+iv,inflation,raw SNR/SNR0 matched,1.2480899139813686,,,,
+iv,inflation,S2 SNR,0.3646493977758362,,,,
+iv,inflation,S2 SNR/SNR0 iid,1.5221437641211608,,,,"uncapped inside, capped inside"
+iv,inflation,S2 SNR/SNR0 matched,1.389829241324509,,,,
+iv,band,h_max 1.0 band (x floor),,1.0697915175434083,1.6622193482660679,,
+iv,band,h_max 0.5 band (x floor),,1.274733304122968,1.7333850266532935,,
